@@ -33,54 +33,73 @@ var fs = require("fs");
 
 // Twitter
 
-var client = new Twitter(keys.twitterkeys);
+var tweets_from_node = function my_tweets() {
 
-var params = {screen_name: 'michael_galt'};
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-    console.log(tweets);
-  }
-});
+	var client = new Twitter(keys.twitterkeys);
+
+	var params = {screen_name: 'michael_galt'};
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
+	  if (!error) {
+	    console.log(tweets);
+	    console.log(tweets[i].created_at);
+	    console.log("");
+	    console.log(tweets[i].text);
+	  }
+	});
+};
+
+function my_tweets();
+console.log(tweets_from_node);
 
 //================================================================================================================================================================================================================================================//
 
 // Spotify
-var spotify = new Spotify({
-  id: "7e6b7bdd083944d3ade64fbdc02716cd",
-  secret: "727dbf5af4db4b559927e5392b231b4d"
-});
- 
-spotify.search({ 
-	type: 'track', 
-	query: process.argv[2] }, 
 
-	function(err, data) {
-	  if (err) {
-	    return console.log('Error occurred: ' + err);
-	  }
- 
-	console.log(data); 
-});
+var spotify_using_node = function find_a_song() {
 
+	var spotify = new Spotify({
+	  id: "7e6b7bdd083944d3ade64fbdc02716cd",
+	  secret: "727dbf5af4db4b559927e5392b231b4d"
+	});
+	 
+	spotify.search({type: 'track', query: find_a_song}, 
+
+		function(err, data) {
+		  if (err) {
+		    return console.log('Error occurred: ' + err);
+		  }
+	 
+		console.log(data); 
+	});
+};
+
+function find_a_song();
+console.log(spotify_using_node);
 //================================================================================================================================================================================================================================================//
 
 // OMDB
 
-var HOST = 'http://www.omdbapi.com/';
+var node_OMDB_pull = function find_movie() {
 
-omdb.search(process.argv[2], function(err, movies) {
-    if(err) {
-        return console.error(err);
-    }
- 
-    if(movies.length < 1) {
-        return console.log('No movies were found!');
-    }
- 
-    movies.forEach(function(movie) {
+	var HOST = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&tomatoes=true&apikey=40e9cece";
+
+	request(HOST, function(err, response, body) {
+	    if(err) {
+	        return console.error(err);
+	    }
+	 
+	    if(movies.length < 1) {
+	        return console.log('No movies were found!');
+	    }
+	 	    
         console.log('%s (%d) %d/10', movie.title, movie.year, movie.imdb.rating);
     	console.log(movie.plot);
-    });
-});
+	    
+	});
+};
 
+function find_movie();
+console.log(node_OMDB_pull);
+
+//================================================================================================================================================================================================================================================//
 
