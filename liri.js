@@ -33,7 +33,7 @@ var fs = require("fs");
 
 // Twitter
 
-var tweets_from_node = function my_tweets() {
+var tweets_from_node = my_tweets() {
 
 	var client = new Twitter(keys.twitterkeys);
 
@@ -48,14 +48,14 @@ var tweets_from_node = function my_tweets() {
 	});
 };
 
-function my_tweets();
+my_tweets();
 console.log(tweets_from_node);
 
 //================================================================================================================================================================================================================================================//
 
 // Spotify
 
-var spotify_using_node = function find_a_song() {
+var spotify_using_node = find_a_song() {
 
 	var spotify = new Spotify({
 	  id: "7e6b7bdd083944d3ade64fbdc02716cd",
@@ -73,13 +73,13 @@ var spotify_using_node = function find_a_song() {
 	});
 };
 
-function find_a_song();
+find_a_song();
 console.log(spotify_using_node);
 //================================================================================================================================================================================================================================================//
 
 // OMDB
 
-var node_OMDB_pull = function find_movie() {
+var node_OMDB_pull = find_movie() {
 
 	var HOST = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&tomatoes=true&apikey=40e9cece";
 
@@ -98,7 +98,7 @@ var node_OMDB_pull = function find_movie() {
 	});
 };
 
-function find_movie();
+find_movie();
 console.log(node_OMDB_pull);
 
 //================================================================================================================================================================================================================================================//
