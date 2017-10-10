@@ -8,6 +8,8 @@ var Twitter = require("twitter");
 
 var Spotify = require("node-spotify-api");
 
+var inquirer = require("inquirer");
+
 var fs = require("fs");
 
 
@@ -67,12 +69,16 @@ var spotify_using_node = function() {
 		  if (err) {
 		    return console.log('Error occurred: ' + err);
 		  }
-		console.log(data.tracks.items); 
+		// console.log(data.tracks.items); 
+		// console.log(data.tracks.items.artists);
+		// console.log(data.tracks.items.name);
+		// console.log(data.tracks.items.preview_url);
+		// console.log(data.tracks.items.album.name);
 	});
 };
 
-spotify_using_node();
-console.log(spotify_using_node);
+// spotify_using_node();
+// console.log(spotify_using_node);
 //================================================================================================================================================================================================================================================//
 
 // OMDB
@@ -90,8 +96,8 @@ var node_OMDB_pull = function() {
 	        return console.log('No movies were found!');
 	    }
 	 	    
-        console.log('%s (%d) %d/10', movie.title, movie.year, movie.imdb.rating);
-    	console.log(movie.plot);
+    // console.log('%s (%d) %d/10', movie.title, movie.year, movie.imdb.rating);
+    // console.log(movie.plot);
 	    
 	});
 };
@@ -101,3 +107,69 @@ var node_OMDB_pull = function() {
 
 //================================================================================================================================================================================================================================================//
 
+// Using inquirer to create a "Prompt" with a series of questions. Depending on the answer you provide, it will then call the appropriate function.
+inquirer
+  .prompt([
+    // Here we create a basic text prompt.
+    // Here we give the user a list to choose from.
+    {
+      type: "list",
+      message: "What would you like to do?",
+      choices: ["Read tweets", "Look up movie info", "Look up song info"],
+      name: "function_to_run_choices"
+    },
+    // Here we ask the user to confirm.
+    {
+      type: "confirm",
+      message: "Are you sure:",
+      name: "confirm",
+      default: true
+    },
+
+    if ("Read tweets" === true) {
+    	tweets_from_node();
+		console.log(tweets_from_node);
+    },
+
+    else if ("Look up song info" ===true) {
+    	{
+	      type: "input",
+	      message: "What is the name of the song?",
+	      name: "song_name"
+	    },
+	    {
+	      type: "confirm",
+	      message: "Are you sure:",
+	      name: "confirm",
+	      default: true
+	    },
+
+	    spotify_using_node();
+		console.log(spotify_using_node);
+    },
+
+    else if ("Look up movie info" ===true) {   
+
+	    {
+	      type: "input",
+	      message: "What is the name of the movie?",
+	      name: "movie_name"
+	    },
+	    {
+	      type: "confirm",
+	      message: "Are you sure:",
+	      name: "confirm",
+	      default: true
+	    },   
+
+	    node_OMDB_pull();
+		console.log(node_OMDB_pull);
+  ])
+
+  .then(function(inquirerResponse) {
+    // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
+    if (inquirerResponse.confirm) {
+      console.log("\nWelcome!");
+      console.log("Your " + inquirerResponse.pokemon + " is ready for battle!\n");
+    }
+  });
