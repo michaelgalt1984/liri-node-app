@@ -32,8 +32,7 @@ var fs = require("fs");
 //================================================================================================================================================================================================================================================//
 
 // Twitter
-
-var tweets_from_node = my_tweets() {
+var tweets_from_node =  function() {
 
 	var client = new Twitter(keys.twitterkeys);
 
@@ -48,38 +47,37 @@ var tweets_from_node = my_tweets() {
 	});
 };
 
-my_tweets();
-console.log(tweets_from_node);
+// tweets_from_node();
+// console.log(tweets_from_node);
 
 //================================================================================================================================================================================================================================================//
 
 // Spotify
 
-var spotify_using_node = find_a_song() {
+var spotify_using_node = function() {
 
 	var spotify = new Spotify({
 	  id: "7e6b7bdd083944d3ade64fbdc02716cd",
 	  secret: "727dbf5af4db4b559927e5392b231b4d"
 	});
 	 
-	spotify.search({type: 'track', query: find_a_song}, 
+	spotify.search({type: 'track', query: "Unforgiven"}, 
 
 		function(err, data) {
 		  if (err) {
 		    return console.log('Error occurred: ' + err);
 		  }
-	 
-		console.log(data); 
+		console.log(data.tracks.items); 
 	});
 };
 
-find_a_song();
+spotify_using_node();
 console.log(spotify_using_node);
 //================================================================================================================================================================================================================================================//
 
 // OMDB
 
-var node_OMDB_pull = find_movie() {
+var node_OMDB_pull = function() {
 
 	var HOST = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&tomatoes=true&apikey=40e9cece";
 
@@ -98,8 +96,8 @@ var node_OMDB_pull = find_movie() {
 	});
 };
 
-find_movie();
-console.log(node_OMDB_pull);
+// node_OMDB_pull();
+// console.log(node_OMDB_pull);
 
 //================================================================================================================================================================================================================================================//
 
