@@ -41,3 +41,24 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
     console.log(tweets);
   }
 });
+
+//================================================================================================================================================================================================================================================//
+
+// Spotify
+var spotify = new Spotify({
+  id: "7e6b7bdd083944d3ade64fbdc02716cd",
+  secret: "727dbf5af4db4b559927e5392b231b4d"
+});
+ 
+spotify.search({ 
+	type: 'track', 
+	query: process.argv[2] }, 
+
+	function(err, data) {
+	  if (err) {
+	    return console.log('Error occurred: ' + err);
+	  }
+ 
+	console.log(data); 
+});
+
